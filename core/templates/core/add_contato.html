@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{%block conteudo%}
+<br/>
+<div class="card border-secondary shadow">
+   <div class="card-header bg-secondary text-white text-center">
+        <h5 class="mb-0">📚 Registro de Contatos</h5>
+    </div>
+    <div class="card-body">
+        <form action="{% url 'add_contato' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label for="nome">Name <span class="asteriskField">*</span></label>
+                <input class="form-control" name="nome" id="nome" type="text"
+                        value={{request.POST.Nome}} >
+            </div>
+
+            <div class="mb-3">
+                <label for="sobrenome">sobrename<span class="asteriskField">*</span></label>
+                <input class="form-control" name="sobrenome" id="sobrenome" type="text"
+                       value={{request.POST.sobrenome}} >
+            </div>
+
+            <div class="mb-3">
+                <label for="telefone">telefone<span class="asteriskField">*</span></label>
+                <input class="form-control" name="telefone" id="telefone" type="text"
+                       value={{request.POST.telefone}} >
+            </div>
+
+
+            <div class="mb-3">
+                <label for="descricao">Descrição <span class="asteriskField">*</span></label>
+                <input class="form-control" name="descricao" id="descricao" type="text"
+                      value={{request.POST.descricao}} >
+            </div>
+
+            <div class="mb-3">
+                {% if contato.imagem %}
+                <label for="imagem">Imagem <span class="asteriskField">*</span></label>
+                {% endif %}
+                <input class="form-control" name="imagem" id="imagem" type="file">
+            </div>
+
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Cadastrar</button>
+                <button type="reset" class="btn btn-danger px-4 ml-2">Cancelar</button>
+            </div>
+
+        </form>
+    </div>
+    <br/>
+
+</div>
+<br/>
+<br/>
+<!-- /Formulário -->
+{% endblock%}
+
+
